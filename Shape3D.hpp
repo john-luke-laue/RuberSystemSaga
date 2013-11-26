@@ -107,8 +107,8 @@ public:
 		scaleMatrix = glm::scale(glm::mat4(), glm::vec3(1000, 1000, 1000));
 		rotationMatrix = glm::mat4();
 		rotationAxis = glm::vec3(0, 1, 0);
-		radiansWarRight = glm::radians(-0.5f);
-		radiansWarLeft = glm::radians(0.5f);
+		radiansWarRight = glm::radians(-0.7f);
+		radiansWarLeft = glm::radians(0.7f);
 		translationMatrix = glm::translate(glm::mat4(), glm::vec3(-4000, 0, -4000));
 
 		war_pos = glm::vec3(0, 0, 0);
