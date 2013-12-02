@@ -252,6 +252,14 @@ public:
 		rotationMatrix = glm::rotate(rotationMatrix, radiansWarLeft, glm::vec3(0,1,0));
 	  if(dir == 'r')
 		  rotationMatrix = glm::rotate(rotationMatrix, radiansWarRight, glm::vec3(0,1,0));
+	  if(dir == 'u') 
+		  rotationMatrix = glm::rotate(rotationMatrix, radiansWarRight, glm::vec3(1,0,0));
+	  if(dir == 'd')
+		  rotationMatrix = glm::rotate(rotationMatrix, radiansWarLeft, glm::vec3(1,0,0));
+	  if(dir == 's') //sideways
+		  rotationMatrix = glm::rotate(rotationMatrix, radiansWarRight, glm::vec3(0,0,1));
+	  if(dir == 'o') //opposite of sideways
+		  rotationMatrix = glm::rotate(rotationMatrix, radiansWarLeft, glm::vec3(0,0,1));
   }
 
 

@@ -142,7 +142,7 @@ void display() {
 
 				float distance = glm::sqrt(((x) * (x)) + ((y) * (y)) + ((z) * (z)));
 			
-				printf("DISTANCE$$$$$$$$$$$$ %f\n\n", distance);
+				//printf("DISTANCE$$$$$$$$$$$$ %f\n\n", distance);
 
 				if(distance <= 3000.0) {
 					moveMissle = true;
@@ -155,7 +155,7 @@ void display() {
 
 					dir = glm::normalize(dir);
 
-					printf("DIR::::::::::::::::::::: %f, %f, %f \n\n", dir.x, dir.y, dir.z); 
+					//printf("DIR::::::::::::::::::::: %f, %f, %f \n\n", dir.x, dir.y, dir.z); 
 
 					pos_missle.x += dir.x*4;
 					pos_missle.y += dir.y*4;
@@ -333,14 +333,16 @@ void special_key_press( int key, int xx, int yy )
 			for (int i = 0; i < 16; ++i)
 				dArray[i] = pSource[i];
 
-			eye_war = glm::vec3(dArray[12],dArray[13]+300.0f,dArray[14]);
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
 			
 			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
 			at_war = glm::normalize(at_war);
 
 			at_war = eye_war - at_war;
 
-			up_war = glm::vec3(0,1,0);
 			if(trailingCamera)
 				keyboard('j', 0, 0);
 			break;
@@ -354,14 +356,16 @@ void special_key_press( int key, int xx, int yy )
 			for (int i = 0; i < 16; ++i)
 				dArray[i] = pSource[i];
 
-			eye_war = glm::vec3(dArray[12],dArray[13]+300.0f,dArray[14]);
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
 			
 			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
 			at_war = glm::normalize(at_war);
 
 			at_war = eye_war - at_war;
 
-			up_war = glm::vec3(0,1,0);
 			if(trailingCamera)
 				keyboard('j', 0, 0);
 			break;
@@ -375,14 +379,16 @@ void special_key_press( int key, int xx, int yy )
 			for (int i = 0; i < 16; ++i)
 				dArray[i] = pSource[i];
 
-			eye_war = glm::vec3(dArray[12],dArray[13]+300.0f,dArray[14]);
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
 			
 			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
 			at_war = glm::normalize(at_war);
 
 			at_war = eye_war - at_war;
 
-			up_war = glm::vec3(0,1,0);
 			if(trailingCamera)
 				keyboard('j', 0, 0);
 
@@ -397,14 +403,108 @@ void special_key_press( int key, int xx, int yy )
 			for (int i = 0; i < 16; ++i)
 				dArray[i] = pSource[i];
 
-			eye_war = glm::vec3(dArray[12],dArray[13]+300.0f,dArray[14]);
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
 			
 			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
 			at_war = glm::normalize(at_war);
 
 			at_war = eye_war - at_war;
 
-			up_war = glm::vec3(0,1,0);
+			if(trailingCamera)
+				keyboard('j', 0, 0);
+			break;
+		case GLUT_KEY_F1:
+			modelObjArr[5]->updateWarbirdRotation('u');
+
+			m_war = modelObjArr[5] -> getModelMatrix(); 
+
+			pSource = (const float*)glm::value_ptr(m_war);
+			
+			for (int i = 0; i < 16; ++i)
+				dArray[i] = pSource[i];
+
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
+			
+			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
+			at_war = glm::normalize(at_war);
+
+			at_war = eye_war - at_war; 
+
+			if(trailingCamera)
+				keyboard('j', 0, 0);
+			break;
+		case GLUT_KEY_F2:
+			modelObjArr[5]->updateWarbirdRotation('d');
+
+			m_war = modelObjArr[5] -> getModelMatrix(); 
+
+			pSource = (const float*)glm::value_ptr(m_war);
+			
+			for (int i = 0; i < 16; ++i)
+				dArray[i] = pSource[i];
+
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
+			
+			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
+			at_war = glm::normalize(at_war);
+
+			at_war = eye_war - at_war; 
+
+			if(trailingCamera)
+				keyboard('j', 0, 0);
+			break;
+		case GLUT_KEY_F3:
+			modelObjArr[5]->updateWarbirdRotation('s');
+
+			m_war = modelObjArr[5] -> getModelMatrix(); 
+
+			pSource = (const float*)glm::value_ptr(m_war);
+			
+			for (int i = 0; i < 16; ++i)
+				dArray[i] = pSource[i];
+
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
+			
+			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
+			at_war = glm::normalize(at_war);
+
+			at_war = eye_war - at_war; 
+
+			if(trailingCamera)
+				keyboard('j', 0, 0);
+			break;
+		case GLUT_KEY_F4:
+			modelObjArr[5]->updateWarbirdRotation('o');
+
+			m_war = modelObjArr[5] -> getModelMatrix(); 
+
+			pSource = (const float*)glm::value_ptr(m_war);
+			
+			for (int i = 0; i < 16; ++i)
+				dArray[i] = pSource[i];
+
+			up_war = glm::normalize(glm::vec3(dArray[4],dArray[5],dArray[6])); //up of camera is normalized up of warbird
+
+			//position of camera is position of warbird plus a factor of the normalized warbird's up vector
+			eye_war = glm::vec3(dArray[12]+(up_war.x*300.0f),dArray[13]+(up_war.y*300.0f),dArray[14]+(up_war.z*300.0f));
+			
+			at_war = glm::vec3(dArray[8],dArray[9],dArray[10]);
+			at_war = glm::normalize(at_war);
+
+			at_war = eye_war - at_war; 
+
 			if(trailingCamera)
 				keyboard('j', 0, 0);
 			break;
