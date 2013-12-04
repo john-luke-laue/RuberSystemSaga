@@ -140,12 +140,16 @@ void display() {
 				float y = pos_war.y - pos_missle.y;
 				float z = pos_war.z - pos_missle.z;
 
-				float distance = glm::sqrt(((x) * (x)) + ((y) * (y)) + ((z) * (z)));
+				float distance = glm::sqrt(((x) * (x)) + ((y) * (y)) + ((z) * (z)));  //distance is distance between warbird and missle
 			
 				//printf("DISTANCE$$$$$$$$$$$$ %f\n\n", distance);
 
 				if(distance <= 3000.0) {
 					moveMissle = true;
+				}
+
+				if(distance <= 15.0) {
+					printf("\nMissle Collision!!!!!!\n");
 				}
 
 				if(moveMissle == true) {
